@@ -9,6 +9,9 @@ class DinnerPaymentProblem:
         self.df = pd.read_csv(csv)
         self.persons = []
         self.create_persons()
+        self.consumed = self.calcule_consumed()
+        self.paid = self.calcule_paid()
+        self.change = self.calcule_change()
 
     def create_persons(self):
         for i in range(len(self.df)):
@@ -20,3 +23,15 @@ class DinnerPaymentProblem:
         for person in self.persons:
             print(person)
 
+    def calcule_consumed(self):
+        return sum(p.consumed for p in self.persons)
+
+    def calcule_paid(self):
+        return sum(p.paid for p in self.persons)
+
+    def calcule_change(self):
+        return self.paid - self.consumed
+
+    def change_per_person(self):
+        for p in self.persons:
+            p.calcule_change(self.consumed, self.paid)
