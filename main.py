@@ -1,8 +1,6 @@
-from DinnerPaymentProblem import DinnerPaymentProblem
-d = DinnerPaymentProblem("data.csv")
+from DinnerPaymentAlgorithm import DinnerPaymentAlgorithm
+from Person import Person
 
-print(d.change_per_person())
-d.overpaid_per_person()
+p = Person('Carlos', 10, 2, 3, 4)
 
-d.get_persons()
-
+d = DinnerPaymentAlgorithm('data.csv')
