@@ -35,3 +35,7 @@ class DinnerPaymentProblem:
     def change_per_person(self):
         for p in self.persons:
             p.calcule_change(self.consumed, self.paid)
+
+    def overpaid_per_person(self):
+        for p in self.persons:
+            p.calcule_overpaid()
