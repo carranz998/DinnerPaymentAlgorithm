@@ -17,15 +17,15 @@ class PersonBuilder:
         for _, row in self.df.iterrows():
 
             name, consumed, paid = row.values
-            change, overpaid = self.postcounts(consumed, paid)
+            change, debt = self.postcounts(consumed, paid)
 
-            yield Person(name, consumed, paid, change, overpaid)
+            yield Person(name, consumed, paid, change, debt)
 
 
     def postcounts(self, consumed, paid):
 
         change = round((paid / self.paid) * self.change, 2)
-        overpaid = round(paid - change - consumed, 2)
+        debt = round(consumed - (paid - change), 2)
 
-        return change, overpaid
+        return change, debt
 
