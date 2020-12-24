@@ -24,8 +24,8 @@ class PersonBuilder:
 
     def postcounts(self, consumed, paid):
 
-        change = round((paid / self.paid) * self.change, 2)
-        debt = round(consumed - (paid - change), 2)
+        change = round(self.change * paid / self.paid, 2)
+        debt = round(consumed - paid + change, 2)
 
         return change, debt
 

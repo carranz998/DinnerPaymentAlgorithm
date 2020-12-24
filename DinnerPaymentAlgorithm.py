@@ -3,15 +3,12 @@ from PersonBuilder import PersonBuilder
 
 class DinnerPaymentAlgorithm:
 
-    def __init__(self):
-        self.persons = [p for p in PersonBuilder().generate_person()]
-
-        for p in self.persons:
-            print(p)
+    def __init__(self, persons):
+        self.persons = persons
 
     def calcule_transactions(self):
 
-        print_change_taking()
+        print_change_taking(self.persons)
 
         creditors, debtors = [], []
 
@@ -22,7 +19,6 @@ class DinnerPaymentAlgorithm:
 
             elif p.debt < 0:
                 creditors += [p]
-
 
         for d in debtors:
             for c in creditors:
@@ -36,17 +32,17 @@ class DinnerPaymentAlgorithm:
                     c.debt, d.debt = transaction(d.debt, c.debt)
 
 
-def print_change_taking():
-    for p in self.persons:
+def print_change_taking(persons):
+    for p in persons:
         print(p.name + " takes " + str(p.change) + " from the change.")
 
 
-def debtor_give_all(d, c):
-    return d.debt > abs(c.debt)
+def debtor_give_all(debtor, creditor):
+    return debtor.debt > abs(creditor.debt)
 
 
-def creditor_gets_all(d, c):
-    return d.debt < abs(c.debt)
+def creditor_gets_all(debtor, creditor):
+    return debtor.debt < abs(creditor.debt)
 
 
 def print_money_giving(issuer, quantity, receiver):
