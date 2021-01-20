@@ -1,9 +1,11 @@
-from Counts import take_change, pay_debts
 from Consumer import Consumer
+from Counts import pay_debts, take_change
 from Reader import read_data
 
-actors = [Consumer(name, float(consumed), float(paid))
-          for name, consumed, paid in read_data('data.csv')]
+consumers = [Consumer(name, float(consumed), float(paid))
+             for name, consumed, paid in read_data('data.csv')]
 
-for action in take_change(actors) + pay_debts(actors):
-    print(action)
+actions = [a for a in take_change(consumers)] + [a for a in pay_debts(consumers)]
+
+for a in actions:
+    print(a)
